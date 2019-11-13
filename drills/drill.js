@@ -36,4 +36,4 @@ function searchDecimal(
   console.log(searchDecimal(books, '005.133', 'Teach Yourself C++ In 21 Days'))
 
 //   Question 4. Searching in a BST
-
+//  Q4.2     8, 6, 5, 9, 10 ,11
