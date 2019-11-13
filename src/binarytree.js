@@ -135,9 +135,42 @@ postOrder() {
   console.log(this.value)
   }
 }
+class _Node {
+  constructor(value, next) {
+    this.value = value;
+    this.next = null;
+  }
+}
+class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+  }
+  enqueue(value) {
+    const node = new _Node(value);
+    if (this.first === null) {
+      this.first = node;
+    }
+    if (this.last) {
+      this.last.next = node;
+    }
+    this.last = node;
+  }
+  dequeue() {
+    if (this.first === null) {
+      return;
+    }
+    const node = this.first;
+    this.first = this.first.next;
+    if (node === this.last) {
+      this.last = null;
+    }
+    return node.value;
+  }
+}
 
 const list = [25, 15, 50, 10, 24, 35, 70, 4, 12, 18, 31, 44, 66, 90, 22]
-const listV2 = ["Lt. security officer",]
+
 function main() {
   const Tree = new BinaryTree();
 
@@ -150,6 +183,23 @@ function main() {
 
 main()
 
+function BF(Tree, values=[]) {
+  const chars = new Queue();
+  const node = Tree;
+
+  chars.enqueue(node)
+    while(chars.first) {
+      const node = chars.dequeue();
+      values.push(node.value)
+      if(node.left){
+        chars.enqueue(node.left)
+      }
+      if(node.right){
+        chars.enqueue(node.right)
+      }
+    }
+    return values;
+}
 
 //PostOrder
 function StarTrek() {
@@ -162,7 +212,6 @@ function StarTrek() {
   trek.insert(1, 'Lt. Sec. Officer');
   trek.insert(8, 'Lt. Commander Crusher');
   trek.insert(7, 'Lt. Selar');
-  console.log(trek);
-  console.log(trek.postOrder());
+  console.log(BF(trek, values=[]))
 }
 StarTrek();
