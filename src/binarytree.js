@@ -94,4 +94,75 @@ class BinaryTree {
     }
     return this.left._findMin();
   }
+
+  //preorder
+//process, step left, step right
+
+
+  preOrder() { 
+    // console.log('Tree is running');
+    console.log(this.key);
+  
+  
+    if(this.left) { 
+      this.left.preOrder(); 
+    } 
+    if(this.right) {
+      this.right.preOrder(); 
+      } 
+    }
+
+//in order 
+//step left, proces, step right
+inOrder() {
+  if(this.left) {
+    this.left.inOrder();
+  }
+  console.log(this.key)
+  if(this.right) {
+    this.right.inOrder();
+  }
 }
+//post order
+//step left, step right, process
+postOrder() {
+  if(this.left) {
+    this.left.postOrder();
+  }
+  if(this.right) {
+    this.right.postOrder();
+  }
+  console.log(this.value)
+  }
+}
+
+const list = [25, 15, 50, 10, 24, 35, 70, 4, 12, 18, 31, 44, 66, 90, 22]
+const listV2 = ["Lt. security officer",]
+function main() {
+  const Tree = new BinaryTree();
+
+    list.forEach(item => Tree.insert(item))
+    console.log(Tree)
+    Tree.preOrder();
+    Tree.postOrder();
+    Tree.inOrder();
+};
+
+main()
+
+
+//PostOrder
+function StarTrek() {
+  const trek = new BinaryTree();
+  trek.insert(5, 'Captain Picard');
+  trek.insert(3, 'Commander Riker');
+  trek.insert(6, 'Commander Data');
+  trek.insert(2, 'Lt. Commander Worf');
+  trek.insert(4, 'Lt.Commander LaForge');
+  trek.insert(1, 'Lt. Sec. Officer');
+  trek.insert(8, 'Lt. Commander Crusher');
+  trek.insert(7, 'Lt. Selar');
+  console.log(trek);
+  console.log(trek.postOrder());
+}
+StarTrek();
